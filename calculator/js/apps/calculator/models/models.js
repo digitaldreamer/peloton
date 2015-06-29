@@ -2,10 +2,12 @@ define(['jquery', 'underscore', 'backbone'],
 function($, _, Backbone) {
     var State = Backbone.Model.extend({
         defaults: {
+            state: 'start',
             combinations: [],  // the calculated outcome from the choices
             inputs: []  // records the user's choices
         },
         initialize: function() {
+            _.bindAll(this, 'onChange');
             var self = this;
 
             this.KEY_CHAR_MAP = {
@@ -20,12 +22,22 @@ function($, _, Backbone) {
                 '8': 'tuv',
                 '9': 'wxyz'
             };
+
+            this.on('change:inputs', this.onChange);
+            this.on('change:combinations', this.onChange);
         },
         addInput: function(input) {
             // add an input
             //
             // use this instead of modifying the array in the model to trigger the change event
             var inputs = this.get('inputs');
+
+            // soft limit to 10 inputs
+            // this algorithm can overload as it's O(n!)
+            // also, don't let inputs added if we've already computed the restults
+            if (inputs.length > 10 || this.get('state') === 'results') {
+                return;
+            }
 
             // only save valid inputs
             if (input in this.KEY_CHAR_MAP) {
@@ -41,12 +53,6 @@ function($, _, Backbone) {
             var combinations = [];
             var inputs = this.get('inputs');
             var mappedInputs = [];
-
-            // soft limit to 10 inputs
-            // this algorithm can overload as it's O(n!)
-            if (inputs.length > 10) {
-                return;
-            }
 
             // compile the mapped keys to their choices
             for (var i=0; i<inputs.length; i++) {
@@ -95,9 +101,24 @@ function($, _, Backbone) {
                 return this.getCombinations(newCombinations, second);
             }
         },
+        onChange: function() {
+            // calculate the state on change
+            var state = '';
+
+            if (this.attributes.combinations.length) {
+                state = 'results';
+            } else if (this.attributes.inputs.length) {
+                state = 'compute';
+            } else {
+                state = 'start';
+            }
+
+            this.set({state: state});
+        },
         reset: function() {
             // reset the state
             this.set({
+                state: 'start',
                 combinations: [],
                 inputs: []
             });

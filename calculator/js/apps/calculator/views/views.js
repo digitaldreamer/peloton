@@ -61,16 +61,18 @@ function($, _, Backbone,
             _.bindAll(this, 'onStateChange');
 
             this.render();
+            this.model.on('change:state', this.onStateChange);
             this.model.on('change:inputs', this.onStateChange);
-            this.model.on('change:combinations', this.onStateChange);
         },
         onStateChange: function() {
-            var inputs = this.model.get('inputs');
-            var combinations = this.model.get('combinations');
+            this.render();
         },
         render: function() {
             var template = _.template(messageTemplate);
-            this.$el.append(template());
+            this.$el.html(template({
+                state: this.model.get('state'),
+                inputs: this.model.get('inputs'),
+            }));
         }
     });
 

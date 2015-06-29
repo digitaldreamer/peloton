@@ -2,10 +2,22 @@
     text-align: center;
 
     & > div {
-        display: none;
+        margin-bottom: 1em;
+    }
 
-        div.active {
-            display: block;
+    ul {
+        display: block;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        text-align: center;
+
+        li {
+            display: inline-block;
+            background: @color-list;
+            color: @color-background;
+            padding: 5px 10px;
+            .lh-border-radius(1em);
         }
     }
 }
