@@ -1,3 +1,5 @@
+var CALCULATOR = CALCULATOR || {};
+
 requirejs.config({
     paths: {
         'backbone': '../lib/backbone/backbone',
@@ -22,6 +24,7 @@ requirejs.config({
 });
 
 require(['calculator', 'transit'], function(Calculator) {
-    window.Calculator = Calculator.init();
+    CALCULATOR = Calculator;
+    Calculator.init();
 });
 
