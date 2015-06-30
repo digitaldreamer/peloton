@@ -10,6 +10,7 @@ The project requires node, npm, and bower to be installed to set up the project.
 To start run bower in the project root directory to intall `/calculator/lib`
 
 ::
+
     bower install
 
 The root html directory is `/calculator` (containes index.html)
