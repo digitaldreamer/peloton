@@ -40,7 +40,7 @@ function($, _, Backbone,
             this.animateButton($el);
             this.model.reset();
         },
-        animateButton($el) {
+        animateButton: function($el) {
             // activate the button press animation
             // this could alternatively start on mousedown,
             // but for this demo the animation doesn't register until mouseup
