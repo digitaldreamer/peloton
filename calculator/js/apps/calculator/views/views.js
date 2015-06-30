@@ -78,11 +78,33 @@ function($, _, Backbone,
 
     var Results = Backbone.View.extend({
         initialize: function() {
+            _.bindAll(this, 'onStateChange');
             this.render();
+
+            this.model.on('change:state', this.onStateChange)
+        },
+        onStateChange: function() {
+            if (this.model.get('state') === 'results') {
+                this.show();
+            } else {
+                this.hide();
+            }
+        },
+        show: function() {
+            this.render();
+            this.$el.addClass('active');
+        },
+        hide: function() {
+            this.$el.removeClass('active');
         },
         render: function() {
             var template = _.template(resultsTemplate);
-            this.$el.append(template());
+            var combinations = this.model.get('combinations');
+
+            this.$el.html(template({
+                combinations: combinations,
+                count: combinations.length
+            }));
         }
     });
 

@@ -32,10 +32,10 @@ function($, _, Backbone) {
             // use this instead of modifying the array in the model to trigger the change event
             var inputs = this.get('inputs');
 
-            // soft limit to 10 inputs
+            // soft limit
             // this algorithm can overload as it's O(n!)
-            // also, don't let inputs added if we've already computed the restults
-            if (inputs.length > 10 || this.get('state') === 'results') {
+            // also, don't let inputs be added if we've already computed the restults
+            if (inputs.length > 11 || this.get('state') === 'results') {
                 return;
             }
 
@@ -57,8 +57,10 @@ function($, _, Backbone) {
             // compile the mapped keys to their choices
             for (var i=0; i<inputs.length; i++) {
                 // only add keys that actually have choices
-                if (inputs[i]) {
-                    mappedInputs.push(this.KEY_CHAR_MAP[inputs[i]]);
+                var choices = this.KEY_CHAR_MAP[inputs[i]];
+
+                if (choices.length) {
+                    mappedInputs.push(choices);
                 }
             }
 
