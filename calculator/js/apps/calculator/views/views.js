@@ -15,6 +15,7 @@ function($, _, Backbone,
             _.bindAll(this, 'onClickKeyCalculate', 'onClickKeyInput', 'onClickKeyReset');
 
             this.render();
+            this.supportAudio = $('html').hasClass('audio');
         },
         events: {
             'click .key.calculate': 'onClickKeyCalculate',
@@ -33,8 +34,11 @@ function($, _, Backbone,
             var $el = $(event.currentTarget);
             var key = $el.attr('href');
 
+            if (this.supportAudio) {
+                document.getElementById('audio-' + key).play();
+            }
+
             this.animateButton($el);
-            document.getElementById('audio-' + key).play();
             this.model.addInput(key);
         },
         onClickKeyReset: function(event) {

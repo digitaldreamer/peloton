@@ -2,6 +2,7 @@
 PELOTON
 #######
 
+
 INITIALIZE
 ##########
 
@@ -15,9 +16,11 @@ To initialize run bower in the project root directory to intall dependencies int
 
 The root html directory is `/calculator` (containes index.html)
 
+`/js/main.js` is the main file loaded which initializes the calculator.
 
-STRUCTURE
-#########
+
+NOTES
+#####
 
 This project is built with Backbone and jQuery.
 
@@ -27,8 +30,10 @@ Underscore templates is the template engine.
 
 The dependencies are loaded and managed with RequireJS.
 
-Transit was included to provide css3 javascript animation support but in the end it wasn't needed as I was able to accomplish what I wanted strictly through CSS class manipulation.
+I use Modernizr to check for HTML5 audo support.
+
+Transit is included to provide css3 javascript animation support but in the end it wasn't needed as I was able to accomplish what I wanted strictly through CSS class manipulation.
 
 I did not use a CSS framework like Bootstrap because I felt it was overkill for this assignment, however most of my projects use Bootstrap Grids for responsiveness.
 
-`/js/main.js` is the main file loaded which bootstraps the calculator.
+I enjoyed working on this, and thank you for your time!
