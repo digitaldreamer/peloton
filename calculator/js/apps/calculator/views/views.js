@@ -13,6 +13,7 @@ function($, _, Backbone,
     var Calculator = Backbone.View.extend({
         initialize: function() {
             _.bindAll(this, 'onClickKeyCalculate', 'onClickKeyInput', 'onClickKeyReset');
+
             this.render();
         },
         events: {
@@ -33,6 +34,7 @@ function($, _, Backbone,
             var key = $el.attr('href');
 
             this.animateButton($el);
+            document.getElementById('audio-' + key).play();
             this.model.addInput(key);
         },
         onClickKeyReset: function(event) {

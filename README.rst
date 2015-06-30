@@ -30,3 +30,5 @@ The dependencies are loaded and managed with RequireJS.
 Transit was included to provide css3 javascript animation support but in the end it wasn't needed as I was able to accomplish what I wanted strictly through CSS class manipulation.
 
 I did not use a CSS framework like Bootstrap because I felt it was overkill for this assignment, however most of my projects use Bootstrap Grids for responsiveness.
+
+`/js/main.js` is the main file loaded which bootstraps the calculator.
