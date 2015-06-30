@@ -1,10 +1,12 @@
 define(['jquery', 'underscore', 'backbone',
     'text!apps/calculator/templates/calculator.html',
+    'text!apps/calculator/templates/header.html',
     'text!apps/calculator/templates/message.html',
     'text!apps/calculator/templates/results.html'
 ],
 function($, _, Backbone,
     calculatorTemplate,
+    headerTemplate,
     messageTemplate,
     resultsTemplate
 ) {
@@ -53,6 +55,16 @@ function($, _, Backbone,
         render: function() {
             var template = _.template(calculatorTemplate);
             this.$el.append(template());
+        }
+    });
+
+    var Header = Backbone.View.extend({
+        initialize: function() {
+            this.render();
+        },
+        render: function() {
+            var template = _.template(headerTemplate);
+            this.$el.html(template());
         }
     });
 
@@ -110,6 +122,7 @@ function($, _, Backbone,
 
     return {
         Calculator: Calculator,
+        Header: Header,
         Message: Message,
         Results: Results
     };
