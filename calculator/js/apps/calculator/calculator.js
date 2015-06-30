@@ -8,7 +8,7 @@ function($, _, Backbone, Models, Views) {
     var Calculator = function() {};
 
     Calculator.prototype.init = function() {
-        console.log('init calculator');
+        console.log('calculator start');
 
         // models
         var state = new Models.State();

@@ -4,12 +4,13 @@ function($, _, Backbone) {
         defaults: {
             state: 'start',
             combinations: [],  // the calculated outcome from the choices
-            inputs: []  // records the user's choices
+            inputs: []  // records the user's keys
         },
         initialize: function() {
             _.bindAll(this, 'onChange');
             var self = this;
 
+            // map the keys to their choices
             this.KEY_CHAR_MAP = {
                 '0': '',
                 '1': '',
@@ -32,8 +33,8 @@ function($, _, Backbone) {
             // use this instead of modifying the array in the model to trigger the change event
             var inputs = this.get('inputs');
 
-            // soft limit
-            // this algorithm can overload as it's O(n!)
+            // soft limit:
+            // this algorithm can overload easy as it's O(n!)
             // also, don't let inputs be added if we've already computed the restults
             if (inputs.length >= 7 || this.get('state') === 'results') {
                 return;
@@ -44,7 +45,7 @@ function($, _, Backbone) {
                 inputs.push(input);
                 this.set({inputs: inputs});
 
-                // manually trigger change event
+                // manually trigger the change event
                 this.trigger('change:inputs');
             }
         },
@@ -78,7 +79,7 @@ function($, _, Backbone) {
             // combinations: array of all found combinations
             // inputs: the array of inputs left to process
             var first = inputs[0];
-            var second = inputs.slice(1);
+            var remaining = inputs.slice(1);
             var newCombinations = [];
 
             if (combinations.length) {
@@ -100,7 +101,7 @@ function($, _, Backbone) {
                 return newCombinations;
             } else {
                 // we need to process the inputs again to add more possibilities
-                return this.getCombinations(newCombinations, second);
+                return this.getCombinations(newCombinations, remaining);
             }
         },
         onChange: function() {

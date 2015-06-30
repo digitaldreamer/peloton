@@ -27,4 +27,3 @@ require(['calculator', 'transit'], function(Calculator) {
     CALCULATOR = Calculator;
     Calculator.init();
 });
-

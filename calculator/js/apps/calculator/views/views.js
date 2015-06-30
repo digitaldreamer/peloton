@@ -45,7 +45,7 @@ function($, _, Backbone,
         animateButton: function($el) {
             // activate the button press animation
             // this could alternatively start on mousedown,
-            // but for this demo the animation doesn't register until mouseup
+            // but for now the animation doesn't register until mouseup
             $el.addClass('active');
 
             setTimeout(function() {
@@ -96,6 +96,7 @@ function($, _, Backbone,
             this.model.on('change:state', this.onStateChange);
         },
         onStateChange: function() {
+            // show the results if they are calculated
             if (this.model.get('state') === 'results') {
                 this.show();
             } else {
