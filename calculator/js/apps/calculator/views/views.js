@@ -93,7 +93,7 @@ function($, _, Backbone,
             _.bindAll(this, 'onStateChange');
             this.render();
 
-            this.model.on('change:state', this.onStateChange)
+            this.model.on('change:state', this.onStateChange);
         },
         onStateChange: function() {
             if (this.model.get('state') === 'results') {
