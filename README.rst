@@ -5,9 +5,9 @@ PELOTON
 INITIALIZE
 ##########
 
-The project requires node, npm, and bower to be installed to set up the project.
+The project requires node, npm, and bower to set up the project.
 
-To start run bower in the project root directory to intall `/calculator/lib`
+To initialize run bower in the project root directory to intall dependencies into `/calculator/lib`
 
 ::
 
