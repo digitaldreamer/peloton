@@ -35,7 +35,7 @@ function($, _, Backbone) {
             // soft limit
             // this algorithm can overload as it's O(n!)
             // also, don't let inputs be added if we've already computed the restults
-            if (inputs.length > 11 || this.get('state') === 'results') {
+            if (inputs.length >= 7 || this.get('state') === 'results') {
                 return;
             }
 
