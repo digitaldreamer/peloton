@@ -2,5 +2,5 @@
     baseUrl: '.',
     mainConfigFile: 'main.js',
     name: 'main',
-    out: 'main-compiled.js'
+    out: 'main.compiled.js'
 })
