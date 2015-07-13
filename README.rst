@@ -6,7 +6,7 @@ PELOTON
 INITIALIZE
 ##########
 
-The project requires node, npm, and bower to set up the project.
+The project requires node, npm, and bower to set up the project. The RequireJS npm packege is needed to build the github pages site.
 
 To initialize run bower in the project root directory to intall dependencies into `/calculator/lib`
 
@@ -17,6 +17,25 @@ To initialize run bower in the project root directory to intall dependencies int
 The root html directory is `/calculator` (containes index.html)
 
 `/js/main.js` is the main file loaded which initializes the calculator.
+
+
+BUILD
+#####
+
+To build the site you need to be in the master branch and run the make command::
+
+    make build
+
+
+DEPLOYMENT
+##########
+
+To deploy you first need to run build in the master branch. You can then run the make site command to load the project into the gh-pages branch after which you should commit and push the updates to deploy the site::
+
+    make site
+    git add --all .
+    git commit -am 'updates'
+    git push
 
 
 NOTES
