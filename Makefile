@@ -1,3 +1,4 @@
+SHELL:=/bin/bash -O extglob  # need `shopt -s extglob`
 PROJECT=calculator
 ROOT_DIR=$(shell pwd)
 PROJECT_DIR=$(ROOT_DIR)/$(PROJECT)
@@ -22,13 +23,17 @@ debug: static
 	cp $(BUILD_DIR)/js/main.compiled.js $(BUILD_DIR)/js/main.min.js
 
 static:
+	git checkout master
 	mkdir -p $(BUILD_DIR)
 	rsync -avzh $(PROJECT_DIR)/ $(BUILD_DIR)
 
-site:
+site: clean_site
+	git checkout gh-pages
+	rsync -avzh $(BUILD_DIR)/ $(ROOT_DIR)
+
+clean_site:
 	git checkout gh-pages
 	rm -rf !(Makefile|build)
-	rsync -avzh $(BUILD_DIR)/ $(ROOT_DIR)
 
 clean:
 	rm -rf $(BUILD_DIR)

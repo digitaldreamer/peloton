@@ -1,0 +1,45 @@
+@import "normalize.less";
+@import "../lib/lesshat/build/lesshat-prefixed.less";
+
+@font-mono: Monaco, "Lucida Console", monospace;
+@font-body: Helvetica, Arial, sans-serif;
+
+@color-background: #eee;
+@color-list: #343434;
+@color-results: #ffffee;
+@color-key-top: #fff;
+@color-key-bottom: #e5e5e5;
+
+@import "calculator/calculator.less";
+@import "calculator/message.less";
+@import "calculator/results.less";
+
+html, body {
+    background: @color-background;
+    font-size: 14px;
+    font-family: @font-body;
+    padding: 0 0 50px;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+* {
+    .noselect();
+}
+
+header {
+    padding: 25px;
+    text-align: center;
+}
+
+.container {
+    width: 300px;
+    margin: 0 auto;
+}
